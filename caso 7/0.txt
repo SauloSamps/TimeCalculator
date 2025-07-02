@@ -1,0 +1,40 @@
+# label the tape
+
+input: '<0 0 11 1111 111111111111111 111111111111111'
+blank: ' '
+start state: set
+table:
+  set:
+    '<' : {write: '<', R: 0}
+  0:
+    0 : {write: 0, R: 0}
+    1 : {write: 1, R: 0}
+    ' ' : {write: 'B', R: 1}
+  1:
+    0 : {write: 0, R: 1}
+    1 : {write: 1, R: 1}
+    ' ' : {write: 'C', R: 2}
+  2:
+    1 : {write: 1, R: 2}
+    ' ' : {write: 'D', R: 3}
+  3:
+    1 : {write: 1, R: 3}
+    ' ' : {write: 'E', R: 4}
+  4:
+    1 : {write: 1, R: 4}
+    ' ' : {write: 'F', R: 5}
+  5:
+    1 : {write: 1, R: 5}
+    ' ' : {write: 'G', R: 6}
+  6:
+    ' ' : {write: ' ', L: 6}
+    0 : {write: 0, L: 6}
+    1 : {write: 1, L: 6}
+    'B' : {write: 'B', L: 6}
+    'C' : {write: 'C', L: 6}
+    'D' : {write: 'D', L: 6}
+    'E' : {write: 'E', L: 6}
+    'F' : {write: 'F', L: 6}
+    'G' : {write: 'G', L: 6}
+    '<' : {write: '<', R: done}
+  done:

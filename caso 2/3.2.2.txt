@@ -1,0 +1,20 @@
+input: '<1B0CXXD1111E1F1AXX YY TTT111111111111111111111 K'
+blank: ' '
+start state: set
+table:
+  set:
+    ['A','B','C','D','E','F','G', 0, 1, ' ', 'X', 'Y', 'T', '<'] : {R: set}
+    'K' : {write: ' ', L: add24_end}
+  add24_end:
+    ' ' : {write: ' ', L: add24_end}
+    1 : {write: 1, L: add24_end}
+    'T' : {write: 1, R: erase_set}
+    ['X', 'Y'] : {L: add24_end}
+    'A' : {write: 'G', R: done1}
+  erase_set:
+    1 : {write: 1, R: erase_set}
+    ' ' : {write: ' ', L: erase}
+  erase:
+    1 : {write: ' ', L: add24_end}
+  done1:
+    

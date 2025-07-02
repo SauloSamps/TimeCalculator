@@ -1,0 +1,63 @@
+input: '<0B0CXXD1111E1F1A11 1'
+blank: ' '
+start state: set
+table:
+  set:
+    ['B','C','D','E','F','G', 0, 1, ' ', 'X', '<'] : {R: set}
+    'A' : {write: 'A', R: 0}
+  0:
+    1 : {write: 'X', R: 1}
+    ' ' : {write: ' ', R: checar_direita1}
+  1:
+    1 : {write: 1, R: 1}
+    ' ' : {write: ' ', R: 2}
+  2:
+    1 : {write: 'Y', L: 3}
+    'Y' : {write: 'Y', R: 2}
+    ' ' : {write: ' ', R: 4}
+  3:
+    ' ' : {write: ' ', L: 3}
+    1 : {write: 1, L: 3}
+    'Y' : {write: 'Y', L: 3}
+    'X' : {write: 'X', R: 0}
+  4:
+    ' ' : {write: 1, L: 5}
+  5:
+    'Y' : {write: 'Y', L: 5}
+    ' ' : {write: ' ', L: 5}
+    1 : {write: 'X', R: 6}
+    'X' : {write: 'X', L: 5}
+    'A' : {write: 'G', R: done1}
+  6:
+    1 : {write: 1, R: 6}
+    'X' : {write: 'X', R: 6}
+    ' ' : {write: ' ', R: 7}
+  7:
+    'Y' : {write: 'Y', R: 7}
+    'X' : {write: 'Y', R: 7}
+    '1' : {write: 'Y', R: 7}
+    ' ' : {write: ' ', R: 8}
+  8:
+    1 : {write: 1, R: 8}
+    ' ' : {write: 1, L: reset}
+  reset:
+    1 : {write: 1, L: reset}
+    ' ' : {write: ' ', L: 5}
+  checar_direita1:
+    'Y' : {write: 'Y', R: checar_direita1}
+    ' ' : {write: ' ', R: adjust0}
+    1 : {write: ' ', R: checar_direita2}
+  checar_direita2:
+    1 : {write: 1, R: checar_direita2}
+    ' ' : {write: 1, L: adjust1}
+    
+  adjust0:
+    ' ' : {write: 0, L: adjust0_reset}
+  adjust0_reset:
+    [' ', 'Y', 'X'] : {L: adjust0_reset}
+    'A' : {write: 'G', R: done1}
+  adjust1:
+    ' ' : {write: ' ', R: adjust1_1}
+    1 : {write: 1, L: adjust1}
+  adjust1_1:
+  done1:

@@ -1,0 +1,33 @@
+input: '<0B0C11D1111E1F1G1'
+blank: ' '
+start state: set
+table:
+  # MAIN MACHINE
+  set:
+    ['B','C','D','E','F', 0, 1, 'X', '<'] : {R: set}
+    'G' : {write: 'G', R: sumDone1}
+  # SUM OF COORD DONE, BEGIN COPYING START TIME
+  sumDone1:
+    1 : {write: ' ', R: copySet0}
+  copySet0:
+    1 : {write: 1, R: copySet0}
+    ' ' : {write: 1, L: copySet1}
+  copySet1:
+    ['E','F', 'G', 0, 1, 'X', ' '] : {L: copySet1}
+    'D' : {write: 'D', L: copy1_0}
+  copy1_0:
+    'X' : {write: 'X', L: copy1_0}
+    'C' : {write: 'C', R: copyDone1}
+    1 : {write: 'X', R: copy1_1}
+  copy1_1:
+    ['B','C','D','E', 'F','G', 'X', 0, 1] : {R: copy1_1}
+    ' ' : {write: 1, R: copy1_2}
+  copy1_2:
+    1 : {write: ' ', R: copy1_3}
+  copy1_3:
+    ['B','C','D','E', 'F','G', 'X', 0, 1] : {R: copy1_3}
+    ' ' : {write: 1, R: copySet1}
+  copyDone1:
+    ['B','C','D','E','F','G', 'X', 0, 1] : {R: copyDone1}
+    'G' : {write: 'A', R: subtract}
+  subtract:

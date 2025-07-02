@@ -1,0 +1,76 @@
+input: '<0B0C11D1111E1F1G11 11'
+blank: ' '
+start state: set
+table:
+  # MAIN MACHINE
+  set:
+    '<' : {write: '<', R: eval}
+  # EVALUATE POSITIONS
+  eval:
+    0 : {write: 0, R: bit1}
+  bit1:
+    'B' : {write: 'B', R: bit1}
+    0 : {write: 0, R: bit2}
+  bit2:
+    ['B','C','D','E','F', 0, 1, 'X'] : {R: bit2}
+    'G' : {write: 'A', R: 0}
+  0:
+    1 : {write: 'X', R: 1}
+    ' ' : {write: ' ', R: checar_direita1}
+  1:
+    1 : {write: 1, R: 1}
+    ' ' : {write: ' ', R: 2}
+  2:
+    1 : {write: 'Y', L: 3}
+    'Y' : {write: 'Y', R: 2}
+    ' ' : {write: ' ', R: 4}
+  3:
+    ' ' : {write: ' ', L: 3}
+    1 : {write: 1, L: 3}
+    'Y' : {write: 'Y', L: 3}
+    'X' : {write: 'X', R: 0}
+  4:
+    ' ' : {write: 1, L: 5}
+  5:
+    'Y' : {write: 'Y', L: 5}
+    ' ' : {write: ' ', L: 5}
+    1 : {write: 'X', R: 6}
+    'X' : {write: 'X', L: 5}
+    'A' : {write: 'G', R: caso3}
+  6:
+    1 : {write: 1, R: 6}
+    'X' : {write: 'X', R: 6}
+    ' ' : {write: ' ', R: 7}
+  7:
+    'Y' : {write: 'Y', R: 7}
+    'X' : {write: 'Y', R: 7}
+    '1' : {write: 'Y', R: 7}
+    ' ' : {write: ' ', R: 8}
+  8:
+    1 : {write: 1, R: 8}
+    ' ' : {write: 1, L: reset}
+  reset:
+    1 : {write: 1, L: reset}
+    ' ' : {write: ' ', L: 5}
+  checar_direita1:
+    'Y' : {write: 'Y', R: checar_direita1}
+    ' ' : {write: ' ', R: adjust0}
+    1 : {write: ' ', R: checar_direita2}
+  checar_direita2:
+    1 : {write: 1, R: checar_direita2}
+    ' ' : {write: 1, L: adjust1}
+    
+  adjust0:
+    ' ' : {write: 0, L: adjust0_reset}
+  adjust0_reset:
+    [' ', 'Y', 'X'] : {L: adjust0_reset}
+    'A' : {write: 'G', R: caso7}
+  adjust1:
+    ' ' : {write: ' ', R: reset2}
+    1 : {write: 1, L: adjust1}
+  reset2:
+    [' ', 'Y', 'X', 1] : {L: reset2}
+    'A' : {write: 'G', R: caso4}
+  caso4:
+  caso7:
+  caso3:

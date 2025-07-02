@@ -1,0 +1,102 @@
+input: '<0B1C11D1111E111111111111111F111111111111111G'
+blank: ' '
+start state: set
+table:
+    
+  # MAIN MACHINE
+  set:
+    '<' : {write: '<', R: 0}
+  0:
+    ['B','C','D','F','G', 0, 1, ' ', 'X'] : {R: 0}
+    'E' : {write: 'E', R: div1}
+  div1:
+    1 : {write: 1, R: div2}
+    'F' : {write: 'F', L: div16}
+  div2:
+    1 : {write: 1, R: div3}
+  div3:
+    1 : {write: 1, R: div4}
+  div4:
+    1 : {write: 1, R: div5}
+  div5:
+    1 : {write: 1, R: div6}
+  div6:
+    1 : {write: 1, R: div7}
+  div7:
+    1 : {write: 1, R: div8}
+  div8:
+    1 : {write: 1, R: div9}
+  div9:
+    1 : {write: 1, R: div10}
+  div10:
+    1 : {write: 1, R: div11}
+  div11:
+    1 : {write: 1, R: div12}
+  div12:
+    1 : {write: 1, R: div13}
+  div13:
+    1 : {write: 1, R: div14}
+  div14:
+    1 : {write: 1, R: div15}
+  div15:
+    1 : {write: 'X', R: div1}
+  div16:
+    ['B','C','D','F','G', 0, 1, ' '] : {L: div16}
+    'X' : {write: 1, R: div17}
+    'E' : {write: 'E', R: div1_done}
+  div17:
+    'G' : {write: 'G', R: div18}
+    ['B','C','D','E','F', 0, 1, ' ', 'X'] : {R: div17}
+  div18:
+    1 : {write: 1, R: div18}
+    ' ' : {write: 1, L: div16}
+  div1_done:
+    1 : {write: 1, R: div1_done}
+    'F' : {write: 'F', R: div2_1}
+  div2_1:
+    1 : {write: 1, R: div2_2}
+    'G' : {write: 'G', L: div2_16}
+  div2_2:
+    1 : {write: 1, R: div2_3}
+  div2_3:
+    1 : {write: 1, R: div2_4}
+  div2_4:
+    1 : {write: 1, R: div2_5}
+  div2_5:
+    1 : {write: 1, R: div2_6}
+  div2_6:
+    1 : {write: 1, R: div2_7}
+  div2_7:
+    1 : {write: 1, R: div2_8}
+  div2_8:
+    1 : {write: 1, R: div2_9}
+  div2_9:
+    1 : {write: 1, R: div2_10}
+  div2_10:
+    1 : {write: 1, R: div2_11}
+  div2_11:
+    1 : {write: 1, R: div2_12}
+  div2_12:
+    1 : {write: 1, R: div2_13}
+  div2_13:
+    1 : {write: 1, R: div2_14}
+  div2_14:
+    1 : {write: 1, R: div2_15}
+  div2_15:
+    1 : {write: 'X', R: div2_1}
+  div2_16:
+    ['B','C','D','E','G', 0, 1, ' '] : {L: div2_16}
+    'X' : {write: 1, R: div2_17}
+    'F' : {write: 'F', L: div2_done}
+  div2_17:
+    ' ' : {write: ' ', R: div2_18}
+    ['B','C','D','E','F', 0, 1, 'G', 'X'] : {R: div2_17}
+  div2_18:
+    1 : {write: 1, R: div2_18}
+    ' ' : {write: 1, L: div2_16}
+  # FINISHED BOTH DIVISIONS
+  div2_done:
+    ['B','C','D','E','F', 0, 1, 'G', 'X'] : {L: div2_done}
+    '<' : {write: '<', R: eval}
+  # EVALUATE POSITIONS
+  eval:

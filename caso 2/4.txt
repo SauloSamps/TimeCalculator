@@ -1,0 +1,27 @@
+input: '<1B0CXXD1111E1F1GXX YY 111'
+blank: ' '
+start state: set
+table:
+  set:
+    ['A','B','C','D','E','F', 0, 1, ' ', 'X', 'Y', 'T', '<'] : {R: set}
+    'G' : {write: 'G', R: done1}
+  done1:
+    'X' : {write: 'X', R: done1}
+    ' ' : {write: 'X', R: done1}
+    'Y' : {write: 'X', R: done1}
+    1 : {write: 1, L: shift1}
+  shift1:
+    'X' : {write: 1, R: shift_erase1}
+  shift_erase1:
+    1 : {write: 1, R: shift_erase1}
+    ' ' : {write: ' ', L: shift_erase2}
+  shift_erase2:
+    1 : {write: ' ', L: shift_reset1}
+  shift_reset1:
+    1 : {write: 1, L: shift_reset1}
+    'X' : {write: 'X', L: shift_reset2}
+    'G' : {write: 'G', R: done}
+  shift_reset2:
+    'X' : {write: 'X', R: shift1}
+    'G' : {write: 'G', R: shift1}
+  done:

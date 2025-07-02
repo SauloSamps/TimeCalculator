@@ -1,0 +1,28 @@
+input: '<0B0C11D1111E1F1GXXX YY 1'
+blank: ' '
+start state: set
+table:
+  # MAIN MACHINE
+  set:
+    ['B','C','D','E','F', 0, 1, 'X', '<'] : {R: set}
+    'G' : {write: 'G', R: shiftStart}
+  shiftStart:
+    'X' : {write: 'X', R: shiftStart}
+    ' ' : {write: 'X', R: shiftStart}
+    'Y' : {write: 'X', R: shiftStart}
+    1 : {write: 1, L: shift1}
+  shift1:
+    'X' : {write: 1, R: shift_erase1}
+  shift_erase1:
+    1 : {write: 1, R: shift_erase1}
+    ' ' : {write: ' ', L: shift_erase2}
+  shift_erase2:
+    1 : {write: ' ', L: shift_reset1}
+  shift_reset1:
+    1 : {write: 1, L: shift_reset1}
+    'X' : {write: 'X', L: shift_reset2}
+    'G' : {write: 'G', R: shiftDone}
+  shift_reset2:
+    'X' : {write: 'X', R: shift1}
+    'G' : {write: 'G', R: shift1}
+  shiftDone:

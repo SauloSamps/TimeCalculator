@@ -1,0 +1,95 @@
+input: '<0B1CXXDXXXXE111111111111111F111111111111111G11111111'
+blank: ' '
+start state: set
+table:
+  # MAIN MACHINE
+  set:
+    ['B','C','D','E','F', 0, 1, 'X', '<'] : {R: set}
+    'G' : {write: 'G', L: 0}
+  0:
+    ['G', 1] : {R: 0}
+    ' ' : {write: ' ', L: 1}
+  1:
+    1 : {write: 1, L: 2}
+    'G' : {write: 'G', R: check0}
+  2:
+    1 : {write: 1, L: 3}
+    'G' : {write: 'G', R: erase}
+  3:
+    1 : {write: 1, L: 4}
+    'G' : {write: 'G', R: erase}
+  4:
+    1 : {write: 1, L: 5}
+    'G' : {write: 'G', R: erase}
+  5:
+    1 : {write: 1, L: 6}
+    'G' : {write: 'G', R: erase}
+  6:
+    1 : {write: 1, L: 7}
+    'G' : {write: 'G', R: erase}
+  7:
+    1 : {write: 1, L: 8}
+    'G' : {write: 'G', R: erase}
+  8:
+    1 : {write: 1, L: 9}
+    'G' : {write: 'G', R: erase}
+  9:
+    1 : {write: 1, L: 10}
+    'G' : {write: 'G', R: erase}
+  10:
+    1 : {write: 1, L: 11}
+    'G' : {write: 'G', R: erase}
+  11:
+    1 : {write: 1, L: 12}
+    'G' : {write: 'G', R: erase}
+  12:
+    1 : {write: 1, L: 13}
+    'G' : {write: 'G', R: erase}
+  13:
+    1 : {write: 1, L: 14}
+    'G' : {write: 'G', R: erase}
+  14:
+    1 : {write: 1, L: 15}
+    'G' : {write: 'G', R: erase}
+  15:
+    1 : {write: 1, L: 16}
+    'G' : {write: 'G', R: erase}
+  16:
+    1 : {write: 1, L: 17}
+    'G' : {write: 'G', R: erase}
+  17:
+    1 : {write: 1, L: 18}
+    'G' : {write: 'G', R: erase}
+  18:
+    1 : {write: 1, L: 19}
+    'G' : {write: 'G', R: erase}
+  19:
+    1 : {write: 1, L: 20}
+    'G' : {write: 'G', R: erase}
+  20:
+    1 : {write: 1, L: 21}
+    'G' : {write: 'G', R: erase}
+  21:
+    1 : {write: 1, L: 22}
+    'G' : {write: 'G', R: erase}
+  22:
+    1 : {write: 1, L: 23}
+    'G' : {write: 'G', R: erase}
+  23:
+    1 : {write: 1, L: 24}
+    'G' : {write: 'G', R: erase}
+  24:
+    1 : {write: 'X', L: 1}
+    'G' : {write: 'G', R: erase}
+  check0:
+    'X' : {write: 0, R: erase1}
+  erase:
+    1 : {write: 1, R: erase}
+    'X' : {write: ' ', R: erase1}
+  erase1:
+    1 : {write: ' ', R: erase1}
+    'X' : {write: ' ', R: erase1}
+    ' ' : {write: ' ', L: done}
+  done:
+    ['B','C','D','E','F', 0, 1, 'X', ' '] : {L: done}
+  

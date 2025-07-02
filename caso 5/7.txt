@@ -1,0 +1,21 @@
+input: '<1B0CXXD1111E1F1G111'
+blank: ' '
+start state: set
+table:
+  set:
+    ['A','B','C','D','E','F', 0, 1, ' ', 'X', 'Y', 'T', '<'] : {R: set}
+    'G' : {write: 'G', R: copyAdd}
+  copyAdd:
+    ['F', 'G', 0, 1] : {L: copyAdd}
+    'E' : {write: 'E', L: copyAdd0}
+  copyAdd0:
+    'X' : {write: 'X', L: copyAdd0}
+    'D' : {write: 'D', R: endCopy}
+    1 : {write: 'X', R: copyAdd1}
+  copyAdd1:
+    ['E', 'F', 'G', 'X', 0, 1] : {R: copyAdd1}
+    ' ' : {write: 1, L: copyAdd}
+  endCopy:
+    ['E', 'F', 'X', 0, 1] : {R: endCopy}
+    'G' : {write: 'G', R: done}
+  done:

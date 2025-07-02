@@ -1,0 +1,35 @@
+input: '<1B1C11D1111E1F1G1'
+blank: ' '
+start state: set
+table:
+  # MAIN MACHINE - COPY AND ADD
+  set:
+    ['B','C','D','E','F', 0, 1, 'X', '<'] : {R: set}
+    'G' : {write: 'G', R: copyStart}
+  copyStart:
+    ['E','F', 'G', 0, 1, 'X', ' '] : {L: copyStart}
+    'D' : {write: 'D', L: copy0}
+  copy0:
+    'X' : {write: 'X', L: copy0}
+    'C' : {write: 'C', R: copyDone}
+    1 : {write: 'X', R: copy1}
+  copy1:
+    ['D','E','F', 'G', 0, 1, 'X'] : {R: copy1}
+    ' ' : {write: 1, L: copyStart}
+  copyDone:
+    ['C', 'D', 'E','F', 0, 1, 'X'] : {R: copyDone}
+    'E' : {write: 'E', R: copyStart2}
+  copyStart2:
+    ['F', 'G', 0, 1, 'X', ' '] : {L: copyStart2}
+    'E' : {write: 'E', L: copy0_1}
+  copy0_1:
+    'X' : {write: 'X', L: copy0_1}
+    'D' : {write: 'D', R: copyDone2}
+    1 : {write: 'X', R: copy1_1}
+  copy1_1:
+    ['E','F', 'G', 0, 1, 'X'] : {R: copy1_1}
+    ' ' : {write: 1, L: copyStart2}
+  copyDone2:
+    ['E','F', 0, 1, 'X'] : {R: copyDone2}
+    'G' : {write: 'G', R: adjust}
+  adjust:

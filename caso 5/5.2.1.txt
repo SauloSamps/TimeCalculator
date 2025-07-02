@@ -1,0 +1,86 @@
+input: '<0B0CXXD1111E1F1AXX YYK111'
+blank: ' '
+start state: set
+table:
+  set:
+    ['A','B','C','D','E','F','G', 0, 1, ' ', 'X', 'Y', '<'] : {R: set}
+    'K' : {write: ' ', R: adjust1_1}
+  adjust1_1:
+    1 : {write: 'T', R: adjust1_1}
+    ' ' : {write: ' ', L: adjust1_2}
+  adjust1_2:
+    [0, 1, 'T'] : {L: adjust1_2}
+    ' ' : {write: ' ', R: add24_1}
+  add24_1:
+    'T' : {write: 'T', R: add24_2}
+    ' ' : {write: 1, R: add24_2}
+  add24_2:
+    'T' : {write: 'T', R: add24_3}
+    ' ' : {write: 1, R: add24_3}
+  add24_3:
+    'T' : {write: 'T', R: add24_4}
+    ' ' : {write: 1, R: add24_4}
+  add24_4:
+    'T' : {write: 'T', R: add24_5}
+    ' ' : {write: 1, R: add24_5}
+  add24_5:
+    'T' : {write: 'T', R: add24_6}
+    ' ' : {write: 1, R: add24_6}
+  add24_6:
+    'T' : {write: 'T', R: add24_7}
+    ' ' : {write: 1, R: add24_7}
+  add24_7:
+    'T' : {write: 'T', R: add24_8}
+    ' ' : {write: 1, R: add24_8}
+  add24_8:
+    'T' : {write: 'T', R: add24_9}
+    ' ' : {write: 1, R: add24_9}
+  add24_9:
+    'T' : {write: 'T', R: add24_10}
+    ' ' : {write: 1, R: add24_10}
+  add24_10:
+    'T' : {write: 'T', R: add24_11}
+    ' ' : {write: 1, R: add24_11}
+  add24_11:
+    'T' : {write: 'T', R: add24_12}
+    ' ' : {write: 1, R: add24_12}
+  add24_12:
+    'T' : {write: 'T', R: add24_13}
+    ' ' : {write: 1, R: add24_13}
+  add24_13:
+    'T' : {write: 'T', R: add24_14}
+    ' ' : {write: 1, R: add24_14}
+  add24_14:
+    'T' : {write: 'T', R: add24_15}
+    ' ' : {write: 1, R: add24_15}
+  add24_15:
+    'T' : {write: 'T', R: add24_16}
+    ' ' : {write: 1, R: add24_16}
+  add24_16:
+    'T' : {write: 'T', R: add24_17}
+    ' ' : {write: 1, R: add24_17}
+  add24_17:
+    'T' : {write: 'T', R: add24_18}
+    ' ' : {write: 1, R: add24_18}
+  add24_18:
+    'T' : {write: 'T', R: add24_19}
+    ' ' : {write: 1, R: add24_19}
+  add24_19:
+    'T' : {write: 'T', R: add24_20}
+    ' ' : {write: 1, R: add24_20}
+  add24_20:
+    'T' : {write: 'T', R: add24_21}
+    ' ' : {write: 1, R: add24_21}
+  add24_21:
+    'T' : {write: 'T', R: add24_22}
+    ' ' : {write: 1, R: add24_22}
+  add24_22:
+    'T' : {write: 'T', R: add24_23}
+    ' ' : {write: 1, R: add24_23}
+  add24_23:
+    'T' : {write: 'T', R: add24_24}
+    ' ' : {write: 1, R: add24_24}
+  add24_24:
+    'T' : {write: 'T', R: add24_end}
+    ' ' : {write: 1, R: add24_end}
+  add24_end:

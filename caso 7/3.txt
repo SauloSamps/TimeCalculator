@@ -1,0 +1,17 @@
+input: '<0B0C11D1111E1F1GXX YY 0'
+blank: ' '
+start state: set
+table:
+  # MAIN MACHINE
+  set:
+    ['B','C','D','E','F', 0, 1, 'X', '<'] : {R: set}
+    'G' : {write: 'G', R: clean}
+  clean:
+    'X' : {write: ' ', R: clean}
+    ' ' : {write: ' ', R: clean}
+    'Y' : {write: ' ', R: clean}
+    0 : {write: ' ', L: done}
+  done:
+    ' ' : {write: ' ', L: done}
+    'G' : {write: 'G', R: copyAdd}
+  copyAdd:
