@@ -1,4 +1,4 @@
-input: '<1B0C11D1111E1F1G1 1'
+input: '<1B0C111D1111E111111111111111F111111111111111G1 1'
 blank: ' '
 start state: set
 table:
