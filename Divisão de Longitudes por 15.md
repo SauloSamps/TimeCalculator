@@ -1,5 +1,5 @@
 Estado inicial: 0<br>
-Posição do cabeçote: < + 1
+Posição do cabeçote: < + 1 <br>
 [testar módulo aqui](https://github.com/SauloSamps/TimeCalculator/blob/main/caso%201/1.txt)
 | State      | `<`             | `0`           | `1`           | `⊔`           | `B`           | `C`           | `D`           | `E`             | `F`           | `G`           | `X`           |
 |------------|------------------|---------------|---------------|---------------|---------------|---------------|---------------|------------------|---------------|---------------|---------------|
