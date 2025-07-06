@@ -1,4 +1,19 @@
-# label the tape
+###### Como utilizar ########
+
+# 1) Copiar e colar o código abaixo no simulador turingmachine.io
+# 2) Clicar em 'load machine'
+# 3) Clicar em 'run' ou, alternativamente, em 'step' para avançar a máquina passo a passo
+
+### Nota 1 ###
+# Todas as máquinas para o simulador contém um estado chamado "set". Esse estado não é listado nas tabelas.
+# Esse estado coloca o cabeçote da máquina na posição em que o cabeçote estava no momento em que a máquina da etapa anterior parou. 
+# Isto é para simular as várias etapas como se fossem uma máquina só.
+
+### Nota 2 ###
+# É possível modificar o input se quiser testar outras palavras de entrada.
+# Se atente que a cada etapa o formato da palavra de entrada deve ser igual a palavra na fita deixada pela máquina anterior.
+# Uma boa idéia é simular o fluxo inteiro desde a etapa 0, atualizando manualmente a palavra de entrada e copiando a máquina da próxima etapa a partir da segunda linha (blank: ' ').
+
 
 input: '<1 0 111 1111 111111111111111 111111111111111'
 blank: ' '
