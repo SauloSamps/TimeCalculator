@@ -14,8 +14,12 @@
 # Se atente que a cada etapa o formato da palavra de entrada deve ser igual a palavra na fita deixada pela máquina anterior.
 # Uma boa idéia é simular o fluxo inteiro desde a etapa 0, atualizando manualmente a palavra de entrada e copiando a máquina da próxima etapa a partir da segunda linha (blank: ' ').
 
+# Exemplo -> Se em 3.1 o segundo argumento da subtração for maior que o primeiro, este bloco é executado (a partir do estado adjust1_1)
+# A palavra da fita neste exemplo foi encurtada para execução mais rápida (o conteúdo marcado por E e F não é mais considerado nesta etapa)
+# O caractere K foi inserido aqui como apoio ao estado set, para posicionar a máquina no mesmo estado deixado por 3.1
+# Este bloco é sempre sucedido pelo bloco 3.2.2
 
-input: '<1B0CXXD1111E111111111111111F111111111111111AXX YYK111'
+input: '<1B0CXXD1111E1F1AXX YYK111'
 blank: ' '
 start state: set
 table:
