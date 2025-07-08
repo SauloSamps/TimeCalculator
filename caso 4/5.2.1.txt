@@ -14,6 +14,10 @@
 # Se atente que a cada etapa o formato da palavra de entrada deve ser igual a palavra na fita deixada pela máquina anterior.
 # Uma boa idéia é simular o fluxo inteiro desde a etapa 0, atualizando manualmente a palavra de entrada e copiando a máquina da próxima etapa a partir da segunda linha (blank: ' ').
 
+# Exemplo -> Se em 5.1 o segundo argumento da subtração for maior que o primeiro (ex: horário de partida = 2 horas, -5 horas de fuso, o resultado seria 21 horas no local de chegada), este bloco é executado (a partir do estado adjust1_1)
+# A palavra da fita neste exemplo foi encurtada para execução mais rápida (o conteúdo marcado por E e F não é mais considerado nesta etapa)
+# O caractere K foi inserido aqui como apoio ao estado set, para posicionar a máquina no mesmo estado deixado por 5.1
+# Este bloco é sempre sucedido pelo bloco 5.2.2
 
 input: '<0B0CXXD1111E1F1AXX YYK111'
 blank: ' '
