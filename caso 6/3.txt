@@ -14,8 +14,9 @@
 # Se atente que a cada etapa o formato da palavra de entrada deve ser igual a palavra na fita deixada pela máquina anterior.
 # Uma boa idéia é simular o fluxo inteiro desde a etapa 0, atualizando manualmente a palavra de entrada e copiando a máquina da próxima etapa a partir da segunda linha (blank: ' ').
 
+# Exemplo-> Voo de 15º leste para 30º leste, partindo às 4 horas da manhã e com 2 horas de duração
 
-input: '<1B1C11D1111E1F1GXXX YY 1'
+input: '<1B1C1111D11E111111111111111F111111111111111111111111111111GX Y 1'
 blank: ' '
 start state: set
 table:
